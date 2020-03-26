@@ -1,14 +1,12 @@
 package com.sanservices.websitesapi.modules.state.repository;
 
-import com.sanservices.websitesapi.config.jdbc.Source;
+import com.sanservices.websitesapi.config.jdbc.source.SandalsWebMySql;
 import com.sanservices.websitesapi.modules.state.entity.State;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-import static com.sanservices.websitesapi.config.jdbc.Sources.SandalsWebMySql;
 
 @Repository
 public class StateRepositoryImpl implements StateRepository {
@@ -17,7 +15,7 @@ public class StateRepositoryImpl implements StateRepository {
     private final RowMapper<State> stateRowMapper;
 
     public StateRepositoryImpl(
-            @Source(SandalsWebMySql) NamedParameterJdbcTemplate template,
+            @SandalsWebMySql NamedParameterJdbcTemplate template,
             RowMapper<State> stateRowMapper) {
 
         this.template = template;

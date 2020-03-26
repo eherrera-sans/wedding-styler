@@ -1,9 +1,9 @@
 package com.sanservices.websitesapi.modules.wedding.service;
 
-import com.sanservices.websitesapi.modules.wedding.entity.Inspiration;
+import com.sanservices.websitesapi.modules.wedding.model.InspirationResponseModel;
 
 import java.util.List;
 
 public interface InspirationService {
-    List<Inspiration> getAllInspirations();
+    List<InspirationResponseModel> getAllInspirations();
 }

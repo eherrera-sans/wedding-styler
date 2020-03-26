@@ -1,0 +1,90 @@
+{
+  "properties": [
+    {
+      "name": "sanservices.datasource.sandals-web-oracle.jdbc-url",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "sanservices.datasource.sandals-web-oracle.username",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "sanservices.datasource.sandals-web-oracle.password",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "sanservices.datasource.sandals-web-oracle.maximum-pool-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "name": "sanservices.datasource.sandals-web-oracle.minimum-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "name": "sanservices.datasource.sandals-web-oracle.idle-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "name": "sanservices.datasource.sandals-web-oracle.pool-name",
+      "type": "java.lang.String"
+    },
+
+    {
+      "name": "sanservices.datasource.sandals-web-mysql.jdbc-url",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "sanservices.datasource.sandals-web-mysql.username",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "sanservices.datasource.sandals-web-mysql.password",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "sanservices.datasource.sandals-web-mysql.maximum-pool-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "name": "sanservices.datasource.sandals-web-mysql.minimum-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "name": "sanservices.datasource.sandals-web-mysql.idle-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "name": "sanservices.datasource.sandals-web-mysql.pool-name",
+      "type": "java.lang.String"
+    },
+
+    {
+      "name": "sanservices.datasource.wds.jdbc-url",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "sanservices.datasource.wds.username",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "sanservices.datasource.wds.password",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "sanservices.datasource.wds.maximum-pool-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "name": "sanservices.datasource.wds.minimum-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "name": "sanservices.datasource.wds.idle-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "name": "sanservices.datasource.wds.pool-name",
+      "type": "java.lang.String"
+    }
+  ]
+}

@@ -2,7 +2,7 @@ package com.sanservices.websitesapi.modules.wedding.repository;
 
 import com.sanservices.websitesapi.commons.entity.Brand;
 import com.sanservices.websitesapi.config.jdbc.source.Wds;
-import com.sanservices.websitesapi.modules.wedding.entity.Region;
+import com.sanservices.websitesapi.modules.wedding.entity.WishList;
 import lombok.val;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,30 +17,31 @@ import java.sql.Types;
 import java.util.List;
 
 @Repository
-public class RegionRepositoryImpl implements RegionRepository {
+public class WishListRepositoryImpl implements WishListRepository {
 
-    private final SimpleJdbcCall spGetRegions;
+    private final SimpleJdbcCall spGetWishLists;
 
-    public RegionRepositoryImpl(
-            @Wds JdbcTemplate template,
-            RowMapper<Region> regionRowMapper) {
-
-        spGetRegions = new SimpleJdbcCall(template)
+    public WishListRepositoryImpl(@Wds JdbcTemplate template, RowMapper<WishList> wishListRowMapper) {
+        spGetWishLists = new SimpleJdbcCall(template)
                 .withoutProcedureColumnMetaDataAccess()
                 .withCatalogName("WS_PAGE_PKG")
-                .withProcedureName("GET_REGIONS")
+                .withProcedureName("GET_WISHLISTS")
                 .declareParameters(
+                        new SqlParameter("pi_userId", Types.INTEGER, JDBCType.INTEGER.getName()),
                         new SqlParameter("pi_brand", Types.VARCHAR, JDBCType.VARCHAR.getName()),
-                        new SqlOutParameter("po_regions", Types.REF_CURSOR, regionRowMapper)
+                        new SqlOutParameter("po_wishLists", Types.REF_CURSOR, wishListRowMapper)
                 );
-        spGetRegions.compile();
+        spGetWishLists.compile();
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Region> findByBrand(Brand brand) {
-        val params = new MapSqlParameterSource("pi_brand", brand.name());
-        val result = spGetRegions.execute(params);
-        return (List<Region>) result.get("po_regions");
+    public List<WishList> findByUserIdAndBrand(int userId, Brand brand) {
+        val params = new MapSqlParameterSource();
+        params.addValue("pi_userId", userId);
+        params.addValue("pi_brand", brand.name());
+
+        val result = spGetWishLists.execute(params);
+        return (List<WishList>) result.get("po_wishLists");
     }
 }

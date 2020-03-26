@@ -1,13 +1,13 @@
 package com.sanservices.websitesapi.modules.wedding.service;
 
 import com.sanservices.websitesapi.commons.entity.Brand;
+import com.sanservices.websitesapi.config.jdbc.tx.WdsTx;
 import com.sanservices.websitesapi.modules.wedding.model.EventResponseModel;
 import com.sanservices.websitesapi.modules.wedding.repository.EventRepository;
 import com.sanservices.websitesapi.modules.wedding.repository.SubcategoryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
     private final SubcategoryRepository subcategoryRepository;
 
-    @Transactional("wds")
+    @WdsTx
     @Override
     public List<EventResponseModel> getEventsByBrand(Brand brand) {
         return seq(eventRepository.findAll()).map(event -> {

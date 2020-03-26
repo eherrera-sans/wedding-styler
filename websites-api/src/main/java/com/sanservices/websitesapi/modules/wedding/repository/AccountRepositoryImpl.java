@@ -2,21 +2,20 @@ package com.sanservices.websitesapi.modules.wedding.repository;
 
 import com.sanservices.websitesapi.commons.entity.Result;
 import com.sanservices.websitesapi.commons.extractor.SingleResultSetExtractor;
-import com.sanservices.websitesapi.config.jdbc.Source;
+import com.sanservices.websitesapi.config.jdbc.source.Wds;
 import com.sanservices.websitesapi.modules.wedding.entity.Account;
 import com.sanservices.websitesapi.modules.wedding.entity.Credentials;
-import org.springframework.jdbc.core.*;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.SqlOutParameter;
+import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
-import java.sql.CallableStatement;
 import java.sql.JDBCType;
-import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Map;
-
-import static com.sanservices.websitesapi.config.jdbc.Sources.Wds;
 
 @Repository
 public class AccountRepositoryImpl implements AccountRepository {
@@ -25,7 +24,7 @@ public class AccountRepositoryImpl implements AccountRepository {
     private final SimpleJdbcCall spVerifyLogin;
 
     public AccountRepositoryImpl(
-            @Source(Wds) JdbcTemplate template,
+            @Wds JdbcTemplate template,
             RowMapper<Result<Account, String>> accountResultRowMapper) {
 
         spCreateAccount = new SimpleJdbcCall(template)

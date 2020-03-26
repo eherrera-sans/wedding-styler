@@ -1,7 +1,6 @@
 package com.sanservices.websitesapi.modules.wedding.repository;
 
-import com.sanservices.websitesapi.config.jdbc.Source;
-import com.sanservices.websitesapi.config.jdbc.Sources;
+import com.sanservices.websitesapi.config.jdbc.source.Wds;
 import com.sanservices.websitesapi.modules.wedding.entity.Event;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,15 +12,13 @@ import java.sql.Types;
 import java.util.List;
 import java.util.Map;
 
-import static com.sanservices.websitesapi.config.jdbc.Sources.Wds;
-
 @Repository
 public class EventRepositoryImpl implements EventRepository {
 
     private final SimpleJdbcCall spGetEvents;
 
     public EventRepositoryImpl(
-            @Source(Wds) JdbcTemplate template,
+            @Wds JdbcTemplate template,
             RowMapper<Event> eventRowMapper) {
 
         spGetEvents = new SimpleJdbcCall(template)

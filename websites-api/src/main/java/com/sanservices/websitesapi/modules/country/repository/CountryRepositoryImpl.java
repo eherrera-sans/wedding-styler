@@ -1,14 +1,12 @@
 package com.sanservices.websitesapi.modules.country.repository;
 
-import com.sanservices.websitesapi.config.jdbc.Source;
+import com.sanservices.websitesapi.config.jdbc.source.SandalsWebMySql;
 import com.sanservices.websitesapi.modules.country.entity.Country;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-import static com.sanservices.websitesapi.config.jdbc.Sources.SandalsWebMySql;
 
 @Repository
 public class CountryRepositoryImpl implements CountryRepository {
@@ -17,7 +15,7 @@ public class CountryRepositoryImpl implements CountryRepository {
     private final RowMapper<Country> countryRowMapper;
 
     public CountryRepositoryImpl(
-            @Source(SandalsWebMySql) NamedParameterJdbcTemplate template,
+            @SandalsWebMySql NamedParameterJdbcTemplate template,
             RowMapper<Country> countryRowMapper) {
 
         this.template = template;

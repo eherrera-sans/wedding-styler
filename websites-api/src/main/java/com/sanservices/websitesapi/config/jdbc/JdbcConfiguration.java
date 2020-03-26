@@ -1,6 +1,8 @@
 package com.sanservices.websitesapi.config.jdbc;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.sanservices.websitesapi.config.jdbc.source.SandalsWebMySql;
+import com.sanservices.websitesapi.config.jdbc.source.SandalsWebOracle;
+import com.sanservices.websitesapi.config.jdbc.source.Wds;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -12,88 +14,83 @@ import org.springframework.transaction.TransactionManager;
 
 import javax.sql.DataSource;
 
-import static com.sanservices.websitesapi.config.jdbc.Sources.*;
-
 @Configuration
 public class JdbcConfiguration {
 
     @Bean
-    @Source(SandalsWebOracle)
     @ConfigurationProperties("sanservices.datasource.sandals-web-oracle")
+    @SandalsWebOracle
     public DataSource sandalsWebOracleDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
-    @Source(SandalsWebOracle)
-    public JdbcTemplate sandalsWebOracleJdbcTemplate(@Source(SandalsWebOracle) DataSource ds) {
+    @SandalsWebOracle
+    public JdbcTemplate sandalsWebOracleJdbcTemplate(@SandalsWebOracle DataSource ds) {
         return new JdbcTemplate(ds);
     }
 
     @Bean
-    @Source(SandalsWebOracle)
-    public NamedParameterJdbcTemplate sandalsWebOracleNamedParameterJdbcTemplate(@Source(SandalsWebOracle) JdbcTemplate template) {
+    @SandalsWebOracle
+    public NamedParameterJdbcTemplate sandalsWebOracleNamedParameterJdbcTemplate(@SandalsWebOracle JdbcTemplate template) {
         return new NamedParameterJdbcTemplate(template);
     }
 
     @Bean
-    @Source(SandalsWebOracle)
-    @Qualifier("sandalsWebOracle")
-    public TransactionManager sandalsWebOracleTx(@Source(SandalsWebOracle) DataSource ds) {
+    @SandalsWebOracle
+    public TransactionManager sandalsWebOracleTx(@SandalsWebOracle DataSource ds) {
         return new DataSourceTransactionManager(ds);
     }
 
 
     @Bean
-    @Source(SandalsWebMySql)
     @ConfigurationProperties("sanservices.datasource.sandals-web-mysql")
+    @SandalsWebMySql
     public DataSource sandalsWebMySqlDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
-    @Source(SandalsWebMySql)
-    public JdbcTemplate sandalsWebMySqlJdbcTemplate(@Source(SandalsWebMySql) DataSource ds) {
+    @SandalsWebMySql
+    public JdbcTemplate sandalsWebMySqlJdbcTemplate(@SandalsWebMySql DataSource ds) {
         return new JdbcTemplate(ds);
     }
 
     @Bean
-    @Source(SandalsWebMySql)
-    public NamedParameterJdbcTemplate sandalsWebMySqlNamedParameterJdbcTemplate(@Source(SandalsWebMySql) JdbcTemplate template) {
+    @SandalsWebMySql
+    public NamedParameterJdbcTemplate sandalsWebMySqlNamedParameterJdbcTemplate(@SandalsWebMySql JdbcTemplate template) {
         return new NamedParameterJdbcTemplate(template);
     }
 
     @Bean
-    @Source(SandalsWebMySql)
-    @Qualifier("sandalsWebMysql")
-    public TransactionManager sandalsWebMySqlTx(@Source(SandalsWebMySql) DataSource ds) {
+    @SandalsWebMySql
+    public TransactionManager sandalsWebMySqlTx(@SandalsWebMySql DataSource ds) {
         return new DataSourceTransactionManager(ds);
     }
 
 
     @Bean
-    @Source(Wds)
     @ConfigurationProperties("sanservices.datasource.wds")
+    @Wds
     public DataSource wdsDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
-    @Source(Wds)
-    public JdbcTemplate wdsJdbcTemplate(@Source(Wds) DataSource ds) {
+    @Wds
+    public JdbcTemplate wdsJdbcTemplate(@Wds DataSource ds) {
         return new JdbcTemplate(ds);
     }
 
     @Bean
-    @Source(Wds)
-    public NamedParameterJdbcTemplate wdsNamedParameterJdbcTemplate(@Source(Wds) JdbcTemplate template) {
+    @Wds
+    public NamedParameterJdbcTemplate wdsNamedParameterJdbcTemplate(@Wds JdbcTemplate template) {
         return new NamedParameterJdbcTemplate(template);
     }
 
     @Bean
-    @Source(Wds)
-    @Qualifier("wds")
-    public TransactionManager wdsTx(@Source(Wds) DataSource ds) {
+    @Wds
+    public TransactionManager wdsTx(@Wds DataSource ds) {
         return new DataSourceTransactionManager(ds);
     }
 }

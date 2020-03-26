@@ -2,7 +2,7 @@ package com.sanservices.websitesapi.modules.resort.repository;
 
 import com.sanservices.websitesapi.commons.entity.Brand;
 import com.sanservices.websitesapi.commons.extractor.OptionalResultSetExtractor;
-import com.sanservices.websitesapi.config.jdbc.Source;
+import com.sanservices.websitesapi.config.jdbc.source.SandalsWebOracle;
 import com.sanservices.websitesapi.modules.resort.entity.Resort;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -14,20 +14,22 @@ import java.sql.Types;
 import java.util.List;
 import java.util.Optional;
 
-import static com.sanservices.websitesapi.config.jdbc.Sources.SandalsWebOracle;
-
 @Repository
 public class ResortRepositoryImpl implements ResortRepository {
 
     private final NamedParameterJdbcTemplate template;
     private final RowMapper<Resort> resortRowMapper;
 
+    private final OptionalResultSetExtractor<Resort> optionalResortExtractor;
+
     public ResortRepositoryImpl(
-            @Source(SandalsWebOracle) NamedParameterJdbcTemplate template,
+            @SandalsWebOracle NamedParameterJdbcTemplate template,
             RowMapper<Resort> resortRowMapper) {
 
         this.template = template;
         this.resortRowMapper = resortRowMapper;
+        this.optionalResortExtractor = new OptionalResultSetExtractor<>(resortRowMapper);
+        ;
     }
 
     @Override
@@ -42,11 +44,9 @@ public class ResortRepositoryImpl implements ResortRepository {
     public Optional<Resort> findByBrandAndCode(Brand brand, String code) {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("brand", brand.getCode(), Types.VARCHAR, JDBCType.VARCHAR.getName());
-        params.addValue("code", code, Types.VARCHAR, JDBCType.VARCHAR.getName());
+        params.addValue("code", code.toUpperCase(), Types.VARCHAR, JDBCType.VARCHAR.getName());
 
-        OptionalResultSetExtractor<Resort> extractor = new OptionalResultSetExtractor<>(resortRowMapper);
-
-        return template.query(Sql.GET_RESORTS_BY_BRAND_AND_CODE, params, extractor);
+        return template.query(Sql.GET_RESORTS_BY_BRAND_AND_CODE, params, optionalResortExtractor);
     }
 
     private static final class Sql {
@@ -90,7 +90,7 @@ public class ResortRepositoryImpl implements ResortRepository {
                 "  INNER JOIN OBE_COUNTRIES c " +
                 "    ON r.COUNTRY_ID = c.COUNTRY_ID " +
                 "WHERE RESORT_TYPE = :brand " +
-                "  AND RST_CODE = :code " +
+                "  AND UPPER(RST_CODE) = :code " +
                 "  AND IS_ACTIVE = 1"
         ).replaceAll("\\s+", " ");
     }

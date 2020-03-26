@@ -1,6 +1,6 @@
 package com.sanservices.websitesapi.modules.wedding.repository;
 
-import com.sanservices.websitesapi.config.jdbc.Source;
+import com.sanservices.websitesapi.config.jdbc.source.Wds;
 import com.sanservices.websitesapi.modules.wedding.entity.Inspiration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,15 +12,13 @@ import java.sql.Types;
 import java.util.List;
 import java.util.Map;
 
-import static com.sanservices.websitesapi.config.jdbc.Sources.Wds;
-
 @Repository
 public class InspirationRepositoryImpl implements InspirationRepository {
 
     private final SimpleJdbcCall spGetInspirations;
 
     public InspirationRepositoryImpl(
-            @Source(Wds) JdbcTemplate template,
+            @Wds JdbcTemplate template,
             RowMapper<Inspiration> inspirationRowMapper) {
 
         spGetInspirations = new SimpleJdbcCall(template)

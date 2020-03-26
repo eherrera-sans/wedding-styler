@@ -1,6 +1,6 @@
 package com.sanservices.websitesapi.modules.wedding.controller;
 
-import com.sanservices.websitesapi.modules.wedding.entity.Inspiration;
+import com.sanservices.websitesapi.modules.wedding.model.InspirationResponseModel;
 import com.sanservices.websitesapi.modules.wedding.service.InspirationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ public class InspirationController {
     private final InspirationService inspirationService;
 
     @GetMapping("/inspirations")
-    public List<Inspiration> getAllInspirations() {
+    public List<InspirationResponseModel> getAllInspirations() {
         return inspirationService.getAllInspirations();
     }
 }
