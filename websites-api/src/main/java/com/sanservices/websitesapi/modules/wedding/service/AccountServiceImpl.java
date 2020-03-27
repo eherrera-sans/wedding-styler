@@ -1,9 +1,9 @@
 package com.sanservices.websitesapi.modules.wedding.service;
 
 import com.sanservices.websitesapi.modules.wedding.entity.Account;
-import com.sanservices.websitesapi.modules.wedding.entity.Credentials;
 import com.sanservices.websitesapi.modules.wedding.mapper.AccountMapper;
 import com.sanservices.websitesapi.modules.wedding.model.AccountRequestModel;
+import com.sanservices.websitesapi.modules.wedding.model.CredentialsRequestModel;
 import com.sanservices.websitesapi.modules.wedding.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -31,7 +31,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account login(Credentials credentials) {
+    public Account login(CredentialsRequestModel model) {
+        val credentials = accountMapper.modelToEntity(model);
         val result = accountRepository.login(credentials);
         if (result.isSuccess()) {
             return result.getValue();
