@@ -18,6 +18,6 @@ public class RegionController {
 
     @GetMapping("/brands/{brand}/regions")
     public List<Region> getRegionsByBrand(@PathVariable Brand brand) {
-        return regionService.getRegionsByBrand(brand);
+        return regionService.getRegions(brand);
     }
 }

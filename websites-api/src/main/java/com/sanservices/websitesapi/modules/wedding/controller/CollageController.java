@@ -17,6 +17,6 @@ public final class CollageController {
 
     @GetMapping("/wish-lists/{wishListId}/collage")
     public List<Collage> getCollageDataByWishListId(@PathVariable Integer wishListId) {
-        return collageService.getCollageDataByWishListId(wishListId);
+        return collageService.getCollageData(wishListId);
     }
 }

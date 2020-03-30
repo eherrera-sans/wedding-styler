@@ -6,7 +6,7 @@ import com.sanservices.websitesapi.modules.resort.entity.Resort;
 import java.util.List;
 
 public interface ResortService {
-    List<Resort> getResortsByBrand(Brand brand);
+    List<Resort> getResorts(Brand brand);
 
-    Resort getResortByBrandAndCode(Brand brand, String code);
+    Resort getResort(Brand brand, String code);
 }

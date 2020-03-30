@@ -6,5 +6,5 @@ import com.sanservices.websitesapi.modules.wedding.model.EventResponseModel;
 import java.util.List;
 
 public interface EventService {
-    List<EventResponseModel> getEventsByBrand(Brand brand);
+    List<EventResponseModel> getEvents(Brand brand);
 }

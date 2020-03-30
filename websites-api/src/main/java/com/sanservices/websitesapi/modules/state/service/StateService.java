@@ -5,5 +5,5 @@ import com.sanservices.websitesapi.modules.state.entity.State;
 import java.util.List;
 
 public interface StateService {
-    List<State> getAllStates();
+    List<State> getStates();
 }

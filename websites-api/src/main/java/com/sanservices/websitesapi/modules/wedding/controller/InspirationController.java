@@ -16,6 +16,6 @@ public class InspirationController {
 
     @GetMapping("/inspirations")
     public List<InspirationResponseModel> getAllInspirations() {
-        return inspirationService.getAllInspirations();
+        return inspirationService.getInspirations();
     }
 }

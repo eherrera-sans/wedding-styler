@@ -16,6 +16,6 @@ public class StateController {
 
     @GetMapping("/states")
     public List<State> getAllStates() {
-        return stateService.getAllStates();
+        return stateService.getStates();
     }
 }

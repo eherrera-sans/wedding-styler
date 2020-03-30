@@ -18,11 +18,11 @@ public class ResortController {
 
     @GetMapping("/brands/{brand}/resorts")
     public List<Resort> getResortsByBrand(@PathVariable Brand brand) {
-        return resortService.getResortsByBrand(brand);
+        return resortService.getResorts(brand);
     }
 
     @GetMapping("/brands/{brand}/resorts/{code:[a-zA-Z]{3}}")
     public Resort getResortByBrandAndCode(@PathVariable Brand brand, @PathVariable String code) {
-        return resortService.getResortByBrandAndCode(brand, code);
+        return resortService.getResort(brand, code);
     }
 }

@@ -18,6 +18,6 @@ public class EventController {
 
     @GetMapping("/brands/{brand}/events")
     public List<EventResponseModel> getEventsByBrand(@PathVariable Brand brand) {
-        return eventService.getEventsByBrand(brand);
+        return eventService.getEvents(brand);
     }
 }

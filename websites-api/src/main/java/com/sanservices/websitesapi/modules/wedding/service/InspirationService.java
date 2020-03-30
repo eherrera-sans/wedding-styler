@@ -5,5 +5,5 @@ import com.sanservices.websitesapi.modules.wedding.model.InspirationResponseMode
 import java.util.List;
 
 public interface InspirationService {
-    List<InspirationResponseModel> getAllInspirations();
+    List<InspirationResponseModel> getInspirations();
 }

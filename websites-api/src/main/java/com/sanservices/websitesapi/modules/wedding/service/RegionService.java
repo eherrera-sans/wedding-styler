@@ -6,5 +6,5 @@ import com.sanservices.websitesapi.modules.wedding.entity.Region;
 import java.util.List;
 
 public interface RegionService {
-    List<Region> getRegionsByBrand(Brand brand);
+    List<Region> getRegions(Brand brand);
 }
