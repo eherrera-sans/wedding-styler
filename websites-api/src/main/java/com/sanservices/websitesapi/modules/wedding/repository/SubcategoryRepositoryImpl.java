@@ -3,6 +3,7 @@ package com.sanservices.websitesapi.modules.wedding.repository;
 import com.sanservices.websitesapi.commons.entity.Brand;
 import com.sanservices.websitesapi.config.jdbc.source.Wds;
 import com.sanservices.websitesapi.modules.wedding.entity.Subcategory;
+import lombok.val;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SqlOutParameter;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Repository;
 import java.sql.JDBCType;
 import java.sql.Types;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class SubcategoryRepositoryImpl implements SubcategoryRepository {
@@ -40,11 +40,11 @@ public class SubcategoryRepositoryImpl implements SubcategoryRepository {
     @SuppressWarnings("unchecked")
     @Override
     public List<Subcategory> findByEventIdAndBrand(int eventId, Brand brand) {
-        MapSqlParameterSource params = new MapSqlParameterSource();
+        val params = new MapSqlParameterSource();
         params.addValue("pi_eventId", eventId);
         params.addValue("pi_brand", brand.name());
 
-        Map<String, Object> result = spGetSubcategories.execute(params);
+        val result = spGetSubcategories.execute(params);
         return (List<Subcategory>) result.get("po_subcat");
     }
 }

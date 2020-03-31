@@ -4,6 +4,7 @@ import com.sanservices.websitesapi.commons.entity.Brand;
 import com.sanservices.websitesapi.commons.extractor.OptionalResultSetExtractor;
 import com.sanservices.websitesapi.config.jdbc.source.SandalsWebOracle;
 import com.sanservices.websitesapi.modules.resort.entity.Resort;
+import lombok.val;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -34,7 +35,7 @@ public class ResortRepositoryImpl implements ResortRepository {
 
     @Override
     public List<Resort> findByBrand(Brand brand) {
-        MapSqlParameterSource params = new MapSqlParameterSource();
+        val params = new MapSqlParameterSource();
         params.addValue("brand", brand.getCode(), Types.VARCHAR, JDBCType.VARCHAR.getName());
 
         return template.query(Sql.GET_RESORTS_BY_BRAND, params, resortRowMapper);
@@ -42,7 +43,7 @@ public class ResortRepositoryImpl implements ResortRepository {
 
     @Override
     public Optional<Resort> findByBrandAndCode(Brand brand, String code) {
-        MapSqlParameterSource params = new MapSqlParameterSource();
+        val params = new MapSqlParameterSource();
         params.addValue("brand", brand.getCode(), Types.VARCHAR, JDBCType.VARCHAR.getName());
         params.addValue("code", code.toUpperCase(), Types.VARCHAR, JDBCType.VARCHAR.getName());
 

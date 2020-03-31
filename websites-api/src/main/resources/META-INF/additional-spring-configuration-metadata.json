@@ -28,7 +28,6 @@
       "name": "sanservices.datasource.sandals-web-oracle.pool-name",
       "type": "java.lang.String"
     },
-
     {
       "name": "sanservices.datasource.sandals-web-mysql.jdbc-url",
       "type": "java.lang.String"
@@ -57,7 +56,6 @@
       "name": "sanservices.datasource.sandals-web-mysql.pool-name",
       "type": "java.lang.String"
     },
-
     {
       "name": "sanservices.datasource.wds.jdbc-url",
       "type": "java.lang.String"

@@ -12,11 +12,6 @@ public interface AccountMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "optedIn", constant = "false")
-    @Mapping(target = "withId", ignore = true)
-    @Mapping(target = "withEmail", ignore = true)
-    @Mapping(target = "withLastName", ignore = true)
-    @Mapping(target = "withCountryCode", ignore = true)
-    @Mapping(target = "withOptedIn", ignore = true)
     Account modelToEntity(AccountRequestModel model);
 
     Credentials modelToEntity(CredentialsRequestModel model);

@@ -5,7 +5,6 @@ import com.sanservices.websitesapi.modules.wedding.entity.InspirationMedia;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 public final class InspirationResponseModel implements Serializable {

@@ -2,6 +2,7 @@ package com.sanservices.websitesapi.modules.wedding.repository;
 
 import com.sanservices.websitesapi.config.jdbc.source.Wds;
 import com.sanservices.websitesapi.modules.wedding.entity.Event;
+import lombok.val;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SqlOutParameter;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Types;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class EventRepositoryImpl implements EventRepository {
@@ -34,7 +34,7 @@ public class EventRepositoryImpl implements EventRepository {
     @SuppressWarnings("unchecked")
     @Override
     public List<Event> findAll() {
-        Map<String, Object> result = spGetEvents.execute();
+        val result = spGetEvents.execute();
         return (List<Event>) result.get("po_events");
     }
 }

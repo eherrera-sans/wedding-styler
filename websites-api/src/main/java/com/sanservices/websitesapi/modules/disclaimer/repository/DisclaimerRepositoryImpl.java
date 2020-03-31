@@ -18,7 +18,6 @@ import java.util.Optional;
 public class DisclaimerRepositoryImpl implements DisclaimerRepository {
 
     private final NamedParameterJdbcTemplate template;
-    private final RowMapper<Disclaimer> disclaimerRowMapper;
 
     private final OptionalResultSetExtractor<Disclaimer> optionalDisclaimerExtractor;
 
@@ -27,7 +26,6 @@ public class DisclaimerRepositoryImpl implements DisclaimerRepository {
             RowMapper<Disclaimer> disclaimerRowMapper) {
 
         this.template = template;
-        this.disclaimerRowMapper = disclaimerRowMapper;
         this.optionalDisclaimerExtractor = new OptionalResultSetExtractor<>(disclaimerRowMapper);
     }
 

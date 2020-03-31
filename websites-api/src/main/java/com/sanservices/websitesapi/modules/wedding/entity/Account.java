@@ -1,16 +1,16 @@
 package com.sanservices.websitesapi.modules.wedding.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.With;
 
 import java.io.Serializable;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@With
+@AllArgsConstructor
+@Builder(setterPrefix = "set", toBuilder = true)
 public final class Account implements Serializable {
     private static final long serialVersionUID = 8268755395553653422L;
 

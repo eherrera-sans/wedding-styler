@@ -5,6 +5,7 @@ import com.sanservices.websitesapi.commons.extractor.SingleResultSetExtractor;
 import com.sanservices.websitesapi.config.jdbc.source.Wds;
 import com.sanservices.websitesapi.modules.wedding.entity.Account;
 import com.sanservices.websitesapi.modules.wedding.entity.Credentials;
+import lombok.val;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SqlOutParameter;
@@ -56,17 +57,17 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Result<Account, String> save(Account account) {
-        MapSqlParameterSource params = new MapSqlParameterSource();
+        val params = new MapSqlParameterSource();
         params.addValue("pi_email", account.getEmail());
         params.addValue("pi_lastName", account.getLastName());
         params.addValue("pi_country", account.getCountryCode());
         params.addValue("pi_optedIn", (account.isOptedIn() ? "Y" : "N"));
 
-        Map<String, Object> result = spCreateAccount.execute(params);
-        String message = (String) result.get("po_message");
+        val result = spCreateAccount.execute(params);
+        val message = (String) result.get("po_message");
         if (message.equalsIgnoreCase("success")) {
-            Integer userId = (Integer) result.get("po_userId");
-            return Result.success(account.withId(userId));
+            val userId = (Integer) result.get("po_userId");
+            return Result.success(account.toBuilder().setId(userId).build());
         } else {
             return Result.failure(message);
         }

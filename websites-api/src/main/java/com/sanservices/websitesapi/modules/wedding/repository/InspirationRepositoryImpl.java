@@ -2,6 +2,7 @@ package com.sanservices.websitesapi.modules.wedding.repository;
 
 import com.sanservices.websitesapi.config.jdbc.source.Wds;
 import com.sanservices.websitesapi.modules.wedding.entity.Inspiration;
+import lombok.val;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SqlOutParameter;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Types;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class InspirationRepositoryImpl implements InspirationRepository {
@@ -34,7 +34,7 @@ public class InspirationRepositoryImpl implements InspirationRepository {
     @SuppressWarnings("unchecked")
     @Override
     public List<Inspiration> findAll() {
-        Map<String, Object> result = spGetInspirations.execute();
+        val result = spGetInspirations.execute();
         return (List<Inspiration>) result.get("po_inspirations");
     }
 }
